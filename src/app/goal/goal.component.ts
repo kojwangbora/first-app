@@ -20,6 +20,13 @@ export class GoalComponent implements OnInit {
   toggleDetails(index: number){
     this.goals[index].showDescription = !this.goals[index].showDescription;
   }
+
+  addNewGoal(goal: Goal){
+    let goalLength = this.goals.length;
+    goal.id = goalLength+1;
+    goal.completeDate = new Date(goal.completeDate)
+    this.goals.push(goal)
+  }
   
   deleteGoal(isComplete: any, index: number){
     if (isComplete) {
