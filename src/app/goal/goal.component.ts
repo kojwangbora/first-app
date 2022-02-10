@@ -1,3 +1,4 @@
+import { AlertService } from './../alert-service/alert.service';
 import { Component, OnInit } from '@angular/core';
 import { Goal } from '../goal';
 import { GoalService } from '../goal-service/goal.service';
@@ -11,10 +12,12 @@ import { GoalService } from '../goal-service/goal.service';
 
 export class GoalComponent implements OnInit {  
   goals: Goal[]
+  alertService:AlertService;
 
-  constructor(goalService:GoalService){
-    this.goals=goalService.getGoals()
-  } 
+  constructor(goalService:GoalService, alertService:AlertService) {
+    this.goals = goalService.getGoals()
+    this.alertService = alertService;
+  }
 
   addNewGoal(goal: Goal){
   let goalLength = this.goals.length;
@@ -32,8 +35,9 @@ toggleDetails(index: number){
 deleteGoal(isComplete: any, index: number){
   if (isComplete) {
     let toDelete = confirm(`Are you sure you want to delete ${this.goals[index].name}?`)      
-    if (toDelete){
-      this.goals.splice(index,1)
+      if (toDelete){
+        this.goals.splice(index,1)
+        this.alertService.alertMe("The goal has been deleted")
     }
   }
 }  
