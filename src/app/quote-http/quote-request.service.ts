@@ -22,20 +22,34 @@ export class QuoteRequestService {
        author:string;
        
      }
-     let promise= new Promise<void>((resolve, reject)=>{
-       this.http.get<ApiResponse>(environment.apiUrl).toPromise().then(response=>{
-         this.quote.quote=response.author
-         this.quote.author= response.author
-          resolve()
-       },
-       error=>{
-         this.quote.quote="Never, never, never give up"
-         this.quote.author= "Winston Churchill"
+     let promise = new Promise((resolve,reject)=>{
+      this.http.get<ApiResponse>(environment.apiUrl).toPromise().then(response=>{
+        this.quote.quote = response.quote
+        this.quote.author = response.author
+      },
+      error=>{
+        this.quote.quote = "Never, never, never give up"
+        this.quote.author = "Winston Churchill"
 
-         reject(error)
-       })
-     })
-     return(promise)
-   }
-  
+        reject(error)
+      })
+    })
+    return promise
+  }
 }
+//      et promise= new Promise((resolve, reject)=>{
+//        this.http.get<ApiResponse>(environment.apiUrl).toPromise().then(response=>{
+//          this.quote.quote=response.author
+//          this.quote.author= response.author
+        
+//        },error=>{
+//          this.quote.quote="Never, never, never give up"
+//          this.quote.author= "Winston Churchill"
+
+//          reject(error)
+//        })
+//        return promise
+//      })
+    
+//    } 
+// }
