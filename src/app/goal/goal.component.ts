@@ -1,10 +1,10 @@
+import { QuoteRequestService } from './../quote-http/quote-request.service';
 import { AlertService } from './../alert-service/alert.service';
 import { Component, OnInit } from '@angular/core';
 import { Goal } from '../goal';
 import { GoalService } from '../goal-service/goal.service';
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 import { Quote } from '../quote-class/quote';
-import { QuoteRequestService } from '../quote-http/quote-request.service';
  
 @Component({
   selector: 'app-goal',
@@ -27,25 +27,25 @@ export class GoalComponent implements OnInit {
   quote!: Quote;
   
   
-  constructor(goalService:GoalService, alertService:AlertService, private http:HttpClient, private quoteService:QuoteRequestService) {
+  constructor(goalService:GoalService, alertService:AlertService, private quoteService: QuoteRequestService) {
     this.goals = goalService.getGoals()
     this.alertService = alertService;
     
   }
 
   ngOnInit(){
-    interface ApiResponse{
-      author:string;
-      quote:string;
-      // this.quoteService.quoteRequest()
-      // this.quote= this.quoteService.quote
-    }
+    // interface ApiResponse{
+    //   author:string;
+    //   quote:string;
+    this.quoteService.quoteRequestService()
+    this.quote= this.quoteService.quote
+  }
 
-  this.http.get<ApiResponse>("http://quotes.stormconsultancy.co.uk/random.json").subscribe(data=>{
-        // Succesful API request
-        this.quote = new Quote(data.author, data.quote)
-      })
-    }
+  // this.http.get<ApiResponse>("http://quotes.stormconsultancy.co.uk/random.json").subscribe(data=>{
+  //       // Succesful API request
+  //       this.quote = new Quote(data.author, data.quote)
+  //     })
+  //   }
 
   addNewGoal(goal: Goal){
   let goalLength = this.goals.length;
