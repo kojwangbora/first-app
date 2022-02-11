@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { Quote } from '../quote-class/quote';
-import { error } from '@angular/compiler/src/util';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuoteRequestService {
-  quoteRequestService() {
-    throw new Error('Method not implemented.');
-  }
+  // quoteRequestService() {
+  //   throw new Error('Method not implemented.');
+  // }
   quote!: Quote;
 
   constructor(private http:HttpClient) {
@@ -20,9 +20,15 @@ export class QuoteRequestService {
      interface ApiResponse{
        quote:string;
        author:string;
+       
      }
-     let promise= new Promise((resolve, reject)=>{
-       this.http.get<ApiResponse>(environment.apiUrl).toPromise().then(Response=>{
+     let promise= new Promise<void>((resolve, reject)=>{
+       this.http.get<ApiResponse>(environment.apiUrl).toPromise().then(response=>{
+         this.quote.quote=response.author
+         this.quote.author= response.author
+          resolve()
+       },
+       error=>{
          this.quote.quote="Never, never, never give up"
          this.quote.author= "Winston Churchill"
 
@@ -31,4 +37,5 @@ export class QuoteRequestService {
      })
      return(promise)
    }
+  
 }

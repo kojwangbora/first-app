@@ -1,5 +1,5 @@
-import { QuoteRequestService } from './../quote-http/quote-request.service';
-import { AlertService } from './../alert-service/alert.service';
+import { QuoteRequestService } from '../quote-http/quote-request.service';
+import { AlertService } from '../alert-service/alert.service';
 import { Component, OnInit } from '@angular/core';
 import { Goal } from '../goal';
 import { GoalService } from '../goal-service/goal.service';
@@ -37,8 +37,8 @@ export class GoalComponent implements OnInit {
     // interface ApiResponse{
     //   author:string;
     //   quote:string;
-    this.quoteService.quoteRequestService()
-    this.quote= this.quoteService.quote
+    this.quoteService.quoteRequest()
+    this.quote = this.quoteService.quote
   }
 
   // this.http.get<ApiResponse>("http://quotes.stormconsultancy.co.uk/random.json").subscribe(data=>{
