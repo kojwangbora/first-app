@@ -11,6 +11,7 @@ import { GoalFormComponent } from './goal-form/goal-form.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AboutComponent } from './about/about.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AboutComponent } from './about/about.component';
     StrikethroughDirective,
     DateCountPipe,
     GoalFormComponent,
-    AboutComponent
+    AboutComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
