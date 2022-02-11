@@ -11,7 +11,7 @@ export class QuoteRequestService {
   // quoteRequestService() {
   //   throw new Error('Method not implemented.');
   // }
-  quote!: Quote;
+  quote: Quote;
 
   constructor(private http:HttpClient) {
     this.quote= new Quote("", "");
@@ -22,10 +22,10 @@ export class QuoteRequestService {
        author:string;
        
      }
-     let promise = new Promise((resolve,reject)=>{
+     let promise = new Promise<void>((resolve,reject)=>{
       this.http.get<ApiResponse>(environment.apiUrl).toPromise().then(response=>{
-        this.quote.quote = response.quote
-        this.quote.author = response.author
+        this.quote.quote = response!.quote
+        this.quote.author = response!.author
       },
       error=>{
         this.quote.quote = "Never, never, never give up"
@@ -37,19 +37,4 @@ export class QuoteRequestService {
     return promise
   }
 }
-//      et promise= new Promise((resolve, reject)=>{
-//        this.http.get<ApiResponse>(environment.apiUrl).toPromise().then(response=>{
-//          this.quote.quote=response.author
-//          this.quote.author= response.author
-        
-//        },error=>{
-//          this.quote.quote="Never, never, never give up"
-//          this.quote.author= "Winston Churchill"
-
-//          reject(error)
-//        })
-//        return promise
-//      })
-    
-//    } 
-// }
+ 
